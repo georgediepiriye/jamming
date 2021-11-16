@@ -7,7 +7,7 @@ export class SearchBar extends React.Component{
         return(
         <div className="SearchBar">
             <input placeholder="Enter A Song, Album, or Artist" />
-            <button classname="SearchButton">SEARCH</button>
+            <button className="SearchButton">SEARCH</button>
         </div>
         );
     }
