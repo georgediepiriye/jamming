@@ -10,35 +10,9 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      searchResults : [
-        {
-          name: 'track 1',
-          artist: 'George Diepiriye',
-          album: 'first album',
-          id: 1,
-        },
-        {
-          name: 'track 2',
-          artist: 'Blessed',
-          album: 'second album',
-          id: 2,
-        },
-      ],
-      playlistName: 'George playlist',
-      playlistTracks : [
-        {
-          name: 'pl track 1',
-          artist: 'pl George Diepiriye',
-          album: 'pl first album',
-          id: 3,
-        },
-        {
-          name: 'pl track 2',
-          artist: 'pl Blessed',
-          album: 'pl second album',
-          id: 4,
-        },
-      ]
+      searchResults : [],
+      playlistName: 'My Playlist',
+      playlistTracks : []
     };
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
@@ -73,13 +47,21 @@ class App extends React.Component {
 
   savePlaylist(){
     const tracksURIs = this.state.playlistTracks.map(track=>track.uri)
+    Spotify.savePlaylist(this.state.playlistName,tracksURIs).then(()=>{
+      this.setState({
+        playlistName : 'New Playlist',
+        playlistTracks : []
+      })
+    })
+ 
+
   }
 
   search(term){
     Spotify.search(term).then(searchResults=>{
       this.setState({searchResults : searchResults})
     })
-    console.log(term)
+
 
   }
  render(){
