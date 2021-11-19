@@ -2,7 +2,7 @@
 
 
 let accessToken = '';
-const REDIRECT_URI = "http://jammingg.surge.sh";
+const REDIRECT_URI = "https://jammingg.netlify.app/";
 const Spotify={
     savePlaylist(name,tracksUris){
         if(!name || !tracksUris.length){
